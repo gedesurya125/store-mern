@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {fetchAll} from './actions/items';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
@@ -57,7 +57,6 @@ export default function App() {
 
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const [reload, setReload] = React.useState(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -67,6 +66,8 @@ export default function App() {
   useEffect(() => {
     dispatch(fetchAll());
   }, [dispatch]);
+  
+  const items = useSelector(state =>  state.itemReducer)
   return (
     <React.Fragment>
       <CssBaseline/>
@@ -82,7 +83,7 @@ export default function App() {
           Home
         </TabPanel>
         <TabPanel className = {classes.tabPanel} value={value} index={1}>
-          <Stock reload={reload} setReload={setReload}/>
+          <Stock items={items}/>
         </TabPanel>
         <TabPanel value={value} index={2}>
           Report

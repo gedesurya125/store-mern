@@ -1,0 +1,46 @@
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+  "username": "surya125"
+}
+
+###
+
+GET http://localhost:5000/previlege
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1cnlhMTI1IiwiaWF0IjoxNjE5NTEyMjAzLCJleHAiOjE2MTk1MTIyMTh9.vNba_cquPpKfhg7st8bcpwFCfwZHM7As_E0gwBAA8Mc
+
+
+
+### SERVER 2 ###
+
+### GENERATE NEW AUTH AND REFRESH TOKEN
+POST http://localhost:6000/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "username" : "suryaadi125",
+  "password" : "karisma125"
+}
+
+### GET CONTENT BY TOKEN AUTHORIZATION
+GET http://localhost:6000/login
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1cnlhYWRpMTI1IiwicGFzc3dvcmQiOiJrYXJpc21hMTI1IiwiaWF0IjoxNjE5NTg3Mzg3LCJleHAiOjE2MTk1ODc0MDd9.Tn-adGG6iXbQ_IZA8m2IJf4ZUclz87wTjbMBVMyKYP4
+
+
+### GENERATE NEW AUTH TOKEN BY REFRESH TOKEN
+POST http://localhost:6000/token/
+Content-Type: application/json
+
+{
+  "tokenku": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1cnlhYWRpMTI1IiwicGFzc3dvcmQiOiJrYXJpc21hMTI1IiwiaWF0IjoxNjE5NTg3MzUyfQ.q5DQr2j199Whp9aYJyHOUgElp5fP3Vb-HerhmqrFwzQ"
+}
+
+
+### DELETE REFRESH TOKEN
+DELETE http://localhost:6000/token/
+Content-Type: application/json
+
+{
+  "tokenku":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1cnlhYWRpMTI1IiwicGFzc3dvcmQiOiJrYXJpc21hMTI1IiwiaWF0IjoxNjE5NTg3ODA2fQ.zmM2uQzMPp104i56xw-d8chZ1JN9SRmwOw0FhsP_iZc"
+}

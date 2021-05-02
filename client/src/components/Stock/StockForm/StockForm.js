@@ -6,6 +6,7 @@ import {useStyles} from './style';
 import {format} from 'date-fns';
 import {useDispatch} from 'react-redux';
 import {post} from '../../../actions/items';
+import {toggleLoading} from '../../../actions/globals';
 
 
 
@@ -179,7 +180,7 @@ const StockForm = (props) => {
 						</Button>	
 					</label>
 
-					{/* <img src={formData.image.base64} alt="" className={classes.previewImg}/> */}
+					<img src={formData.image.base64} alt="" className={classes.previewImg}/>
 
 				</Box>
 

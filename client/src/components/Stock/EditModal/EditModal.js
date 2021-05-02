@@ -1,23 +1,23 @@
 
-import {Modal, Backdrop, Fade, Paper, Typography, Grid, Box, TextField, Button} from '@material-ui/core';
+import {Modal, Backdrop, Fade, Paper, Typography, Grid, Box, TextField, Button, CircularProgress} from '@material-ui/core';
 import {useStyles} from './style';
 import PropTypes from 'prop-types';
 import {useDispatch, useSelector} from 'react-redux';
-import {toggleEditModal} from '../../../actions/globals';
+import {toggleEditModal, toggleLoading} from '../../../actions/globals';
 import {updateById, deleteById} from '../../../actions/items';
 import {useFormik} from 'formik';
 import * as yup from 'yup';
 import {format} from 'date-fns';
 import React from 'react';
 import {getFileWithBase64} from '../../../commons/commonFunction';
-import {SimpleDialog} from '../../../commons/feedback';
 import {WarningButton, DangerButton} from '../../../commons/customComponent';
+
 
 //Reducer initialization
 
 
 //COMPONENT
-export default function EditModal({reload, setReload}){
+export default function EditModal(){
 
 
 
@@ -64,10 +64,11 @@ export default function EditModal({reload, setReload}){
     enableReinitialize: true,
     validationSchema: validationSchema,
     onSubmit: (values, actions) => {
+      dispatch(toggleLoading());
       dispatch(updateById(id, values, () => {
-        setReload(!reload);
         dispatch(toggleEditModal());
         actions.setSubmitting(false);
+        dispatch(toggleLoading());
       }));
       
 
@@ -95,8 +96,10 @@ export default function EditModal({reload, setReload}){
 
   const handleDelete = (e) => {
     e.preventDefault();
+    dispatch(toggleLoading());
     dispatch(deleteById(id, () => {
       dispatch(toggleEditModal())
+      dispatch(toggleLoading());
     }));
     
 
@@ -126,63 +129,68 @@ export default function EditModal({reload, setReload}){
               <Grid item xs={12} sm={8}>
                 <Paper>
                   <form onSubmit={formik.handleSubmit}>
-                    <TextField
-                    fullWidth
-                    id="brand"
-                    name="brand"
-                    label="Brand"
-                    value={formik.values.brand}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur} //this is required of formik.touched
-                    error={formik.touched.brand && Boolean(formik.errors.brand)}
-                    helperText={formik.touched.brand && formik.errors.brand} 
-                    />
-                    <TextField
-                    fullWidth
-                    id="name"
-                    name="name"
-                    label="name"
-                    value={formik.values.name}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur} //this is required of formik.touched
-                    error={formik.touched.name && Boolean(formik.errors.name)}
-                    helperText={formik.touched.name && formik.errors.name} 
-                    />
-                    <TextField
-                    fullWidth
-                    id="price"
-                    name="price"
-                    label="price"
-                    value={formik.values.price}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur} //this is required of formik.touched
-                    error={formik.touched.price && Boolean(formik.errors.price)}
-                    helperText={formik.touched.price && formik.errors.price} 
-                    />
-                    <TextField
-                    fullWidth
-                    id="stock"
-                    name="stock"
-                    label="stock"
-                    value={formik.values.stock}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur} //this is required of formik.touched
-                    error={formik.touched.stock && Boolean(formik.errors.stock)}
-                    helperText={formik.touched.stock && formik.errors.stock} 
-                    />
 
-                    <TextField
-                    fullWidth
-                    type="date"
-                    id="expire"
-                    name="expire"
-                    label="expire"
-                    value={formik.values.expire}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur} //this is required of formik.touched
-                    error={formik.touched.expire && Boolean(formik.errors.expire)}
-                    helperText={formik.touched.expire && formik.errors.expire} 
-                    />
+                    <Box>
+                      <TextField
+                      fullWidth
+                      id="brand"
+                      name="brand"
+                      label="Brand"
+                      value={formik.values.brand}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur} //this is required of formik.touched
+                      error={formik.touched.brand && Boolean(formik.errors.brand)}
+                      helperText={formik.touched.brand && formik.errors.brand} 
+                      />
+                      <TextField
+                      fullWidth
+                      id="name"
+                      name="name"
+                      label="name"
+                      value={formik.values.name}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur} //this is required of formik.touched
+                      error={formik.touched.name && Boolean(formik.errors.name)}
+                      helperText={formik.touched.name && formik.errors.name} 
+                      />
+                      <TextField
+                      fullWidth
+                      id="price"
+                      name="price"
+                      label="price"
+                      value={formik.values.price}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur} //this is required of formik.touched
+                      error={formik.touched.price && Boolean(formik.errors.price)}
+                      helperText={formik.touched.price && formik.errors.price} 
+                      />
+                      <TextField
+                      fullWidth
+                      id="stock"
+                      name="stock"
+                      label="stock"
+                      value={formik.values.stock}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur} //this is required of formik.touched
+                      error={formik.touched.stock && Boolean(formik.errors.stock)}
+                      helperText={formik.touched.stock && formik.errors.stock} 
+                      />
+
+                      <TextField
+                      fullWidth
+                      type="date"
+                      id="expire"
+                      name="expire"
+                      label="expire"
+                      value={formik.values.expire}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur} //this is required of formik.touched
+                      error={formik.touched.expire && Boolean(formik.errors.expire)}
+                      helperText={formik.touched.expire && formik.errors.expire} 
+                      />
+                    </Box>
+
+                    
 
 
                     <Box className={classes.buttonBox} display="flex" justifyContent="center">
@@ -212,7 +220,6 @@ export default function EditModal({reload, setReload}){
             </Grid>
           </Box>
         </Box>
-       
       </Fade>
     </Modal>
   )

@@ -44,7 +44,7 @@ const ItemCard = (props) => {
             {props.name}
           </Typography>
           <Typography variant="h6" color="textSecondary">
-            Rp. {props.price},-
+            Rp. {props.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",")}
           </Typography>
           <Typography>
             Stock : {props.stock}

@@ -6,8 +6,15 @@ export const toBase64 = async(file, cb) => {
   reader.onerror = (err) => cb(err, null);
 }
 
-// consume event from file input as event, then return converted file to base64 on cb(object)
-// returning Detailed File as Object
+
+/**
+ * Convert File to Base64 fomat
+ * consume event from file input as event, then return converted file to base64 on cb(object)
+ * returning Detailed File as Object to second parameter of callback
+ * @function getFileWithBase64 
+ * @param {object} event - Efent from the function
+ * @param {getFileWithBase64cb} cb
+ */
 export const getFileWithBase64 = (event, cb) => {
   const file = event.target.files[0];
   const { lastModified, name, size, type } = file;
@@ -21,8 +28,23 @@ export const getFileWithBase64 = (event, cb) => {
     })
   })
 }
+  /** 
+ * Second Parameter of get FileWithBase64 Method
+ * @callback getFileWithBase64cb
+ * @param {object} err
+ * @param {{lastModified: string, name: string, size: number, type: string, base64: object}} res 
+ */
 
-//Conver ISO Date Format To plain text date
+
+
+
+  
+
+/**
+ * Conver ISO Date Format To plain text date
+ * @param {string} isoDate 
+ * @returns 
+ */
 export const isoDateToPlain = (isoDate) => {
   const date = new Date(isoDate);
   const dmy = {

@@ -1,19 +1,26 @@
 import {Grid, Paper, Typography, Container, CssBaseline } from '@material-ui/core';
 import { useStyles } from './style';
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import StockForm from './StockForm/StockForm';
 import ItemCard from './ItemCard/ItemCard';
 import {useSelector} from 'react-redux';
 import EditModal from './EditModal/EditModal';
+import {BackdropCircularLoading} from '../../commons/circularLoadings';
 
 
 
-const Stock = ({reload, setReload}) => {
+const Stock = ({items}) => {
+
+	
 
 	const classes = useStyles();
-	const items = useSelector(state => state.itemReducer);
+	const {isLoading} = useSelector( state => state.globalReducer );
 
-	console.log('This is inside itemReducer = ',items);
+
+	// const orderedItems = items.slice().sort((a, b) => a.createdAt.localeCompare(b.createdAt));//order items based on date creation
+
+	console.log('This is inside OrderedItems = ',items);
+
 
 	
 	//AddStock, View/edit/and Delete Stock
@@ -38,8 +45,7 @@ const Stock = ({reload, setReload}) => {
 												price={item.price} 
 												stock={item.stock}
 												expire={item.expire}
-												reload={reload}
-												setReload={setReload}
+												createdAt={item.createdAt}
 											/>
 										</Grid>
 								)})}								
@@ -55,7 +61,8 @@ const Stock = ({reload, setReload}) => {
 				</Grid>
 			</Container>
 
-			<EditModal reload={reload} setReload={setReload}/>
+			<EditModal/>
+			<BackdropCircularLoading open={isLoading} /> 
 
 			
 
