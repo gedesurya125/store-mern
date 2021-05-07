@@ -81,3 +81,16 @@ export const isoDateToPlain = (isoDate) => {
   
 
 }
+
+/**
+ * Merge class hook from make styles material ui
+ * @param {string[]} classArr 
+ */
+export const classX = (classArr) => {
+let classStr = '';
+classArr.forEach(cls => {
+  classStr = classStr + ' ' + cls;
+});
+return classStr;
+
+}

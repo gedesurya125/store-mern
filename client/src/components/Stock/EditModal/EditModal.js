@@ -91,7 +91,6 @@ export default function EditModal(){
     getFileWithBase64(e, (err, result) => {
       err ? console.log('error formating file : ', err) : formik.setFieldValue('image', result);
     })
-
   }
 
   const handleDelete = (e) => {

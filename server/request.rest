@@ -10,6 +10,28 @@ Content-Type: application/json
 GET http://localhost:5000/previlege
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1cnlhMTI1IiwiaWF0IjoxNjE5NTEyMjAzLCJleHAiOjE2MTk1MTIyMTh9.vNba_cquPpKfhg7st8bcpwFCfwZHM7As_E0gwBAA8Mc
 
+###ADD NEW USER TO DATABASE
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+  "fullName": "i gede surya adi pranata",
+  "nickName": "surya",
+  "userName": "gedesurya125",
+  "password": "karisma125",
+  "email": "gedesurya125@gmail.com",
+  "phone": "0823874293",
+  "birthday": "1993-10-06",
+  "photo": {},
+}
+
+
+
+
+
+
+
+
 
 
 ### SERVER 2 ###
@@ -44,3 +66,4 @@ Content-Type: application/json
 {
   "tokenku":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN1cnlhYWRpMTI1IiwicGFzc3dvcmQiOiJrYXJpc21hMTI1IiwiaWF0IjoxNjE5NTg3ODA2fQ.zmM2uQzMPp104i56xw-d8chZ1JN9SRmwOw0FhsP_iZc"
 }
+

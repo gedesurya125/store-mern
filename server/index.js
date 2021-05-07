@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import ItemRouter from './routes/item.js';
 import LoginRouter from './routes/login.js';
 import PrivilegeRouter from './routes/privilege.js';
+import UsersRouter from './routes/users.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -24,6 +25,8 @@ app.use("/item", ItemRouter);
 app.use("/login", LoginRouter);
 
 app.use("/previlege", PrivilegeRouter);
+
+app.use("/users", UsersRouter);
 
 mongoose.connect(MONGOO_URI, {
   useNewUrlParser: true, 

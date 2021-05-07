@@ -1,4 +1,8 @@
-import dotenv from 'dotenv';
-import jwt from 'jsonwebtoken';
+/**
+ * AUTHENTICATING REQUEST FROM CLIENT AND CHECK IF ITS TOKEN STILL EXIST
+ */
 
-export const 
+import dotenv from 'dotenv';
+import jwt from 'jsonwebtoken'
+
+

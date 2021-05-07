@@ -1,4 +1,7 @@
-export const countryCode = [
+/**
+ * Provide list of Country Code
+ */
+export const countryCodes = [
   {name: 'USA', fullName: 'United States Of America', code: '+1'},
   {name: 'CHN', fullName: 'China', code: '+86'},
   {name: 'INA', fullName: 'Indonesia', code: '+62'},
