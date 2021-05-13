@@ -15,17 +15,18 @@ POST http://localhost:5000/users
 Content-Type: application/json
 
 {
-  "fullName": "i gede surya adi pranata",
+  "fullName": "MICHAEL",
   "nickName": "surya",
   "userName": "gedesurya125",
   "password": "karisma125",
   "email": "gedesurya125@gmail.com",
   "phone": "0823874293",
   "birthday": "1993-10-06",
-  "photo": {},
+  "photo": ""
 }
 
-
+### fetch all data from user
+GET http://localhost:5000/users
 
 
 
